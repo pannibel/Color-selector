@@ -31,7 +31,7 @@ function makeHSL() {
     const min = Math.min(r,g,b);
     const max = Math.max(r,g,b);
    
-    if( max === min ) {
+    if (max === min ) {
       h = 0;
     } else
     if (max === r) {
@@ -55,22 +55,21 @@ function makeHSL() {
     }
     // multiply s and l by 100 to get the value in percent, rather than [0,1]
     s *= 100;
-    l *= 100;
 
     h = h.toFixed();
     s = s.toFixed();
     l = l.toFixed();
 
-    hslCode = h + ", " + s + "% " + l + "%";
+    hslCode = h + ", " + s + "%, " + l + "%";
 }
 
 //DISPLAYING THE COLOR AND THE CODES
 function colorDisplay() {
     makeHEX();
-    makeRGB(color);
+    makeRGB();
     makeHSL();
 
-    console.log(hexCode);
-    console.log(rgbCode);
-    console.log(hslCode);
+    document.querySelector(".hex").textContent = hexCode;
+    document.querySelector(".rgb").textContent = rgbCode;
+    document.querySelector(".hsl").textContent = hslCode;
 }
