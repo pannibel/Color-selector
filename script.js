@@ -55,6 +55,7 @@ function makeHSL() {
     }
     // multiply s and l by 100 to get the value in percent, rather than [0,1]
     s *= 100;
+    l *= 100;
 
     h = h.toFixed();
     s = s.toFixed();
@@ -69,7 +70,9 @@ function colorDisplay() {
     makeRGB();
     makeHSL();
 
-    document.querySelector(".hex").textContent = hexCode;
-    document.querySelector(".rgb").textContent = rgbCode;
-    document.querySelector(".hsl").textContent = hslCode;
+    document.querySelector(".hex").textContent = "HEX: " + hexCode;
+    document.querySelector(".rgb").textContent = "RGB: " + rgbCode;
+    document.querySelector(".hsl").textContent = "HSL: " + hslCode;
+
+    document.querySelector(".color_display").style.backgroundColor = "rgb(" + rgbCode + ")";
 }
