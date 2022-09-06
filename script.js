@@ -28,6 +28,10 @@ function makeRGB(color) {
 
 function makeHSL() {
 
+    r /= 255;
+    g /= 255;
+    b /= 255;
+
     const min = Math.min(r,g,b);
     const max = Math.max(r,g,b);
    
