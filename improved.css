@@ -1,0 +1,54 @@
+
+
+.container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: rgb(237, 237, 237);
+    margin-left: 25rem;
+    margin-right: 25rem;
+    padding: 2rem;
+    border: 0.1rem solid rgb(187, 186, 186);
+    border-radius: 1rem;
+}
+
+.color_container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.input_container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.color_display {
+    display: block;
+    width: 20vh;
+    height: 20vh;
+    background: black;
+    border-radius: 1rem;
+}
+
+span {
+    font-family: "Helvetica";
+    text-transform: uppercase;
+}
+
+label {
+    font-family: "Helvetica";
+    font-weight: bolder;
+}
+
+input {
+    border: 0.075rem solid rgb(187, 186, 186);
+    border-radius: 0.25rem;
+}
