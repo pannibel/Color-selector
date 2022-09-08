@@ -14,6 +14,7 @@ colorInput.addEventListener("input", colorDisplay);
 //MAKING RGB, HEX AND HSL CODES
 function makeHEX() {
     hexCode = colorInput.value;
+    console.log(hexCode)
 }
 
 function makeRGB(color) {
