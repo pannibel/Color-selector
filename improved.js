@@ -5,8 +5,6 @@ let userInput;
 let rgbToHexValue;
 let rgbToHslValue;
 let hexToRgbValue;
-let r, g, b;
-let h, s, l;
 
 // eventlisteners
 document.addEventListener("DOMContentLoaded", init);
@@ -57,6 +55,7 @@ function rgbToHex(r, g, b) {
 
 // input color into RGB code
 function hexToRgb(userInput) {
+    let r, g, b;
     r = parseInt(userInput.substr(1, 2), 16);
     g = parseInt(userInput.substr(3, 2), 16);
     b = parseInt(userInput.substr(5, 2), 16);
@@ -65,36 +64,42 @@ function hexToRgb(userInput) {
 }
 
 //input color into HSL
-function rgbToHsl(r, g, b) {
-    
+function rgbToHsl(rgb) {
+
+    let r = rgb.r;
+    let b = rgb.b;
+    let g = rgb.g;
+
     r /= 255;
     g /= 255;
     b /= 255;
-
+    
+    let h, s, l;
+    
     const min = Math.min(r,g,b);
     const max = Math.max(r,g,b);
-   
-    if (max === min ) {
-      h = 0;
+    
+    if( max === min ) {
+        h = 0;
     } else
     if (max === r) {
-      h = 60 * (0 + (g - b) / (max - min) );
+        h = 60 * (0 + (g - b) / (max - min) );
     } else
     if (max === g) {
-      h = 60 * (2 + (b - r) / (max - min) );
+        h = 60 * (2 + (b - r) / (max - min) );
     } else
     if (max === b) {
-      h = 60 * (4 + (r - g) / (max - min) );
+        h = 60 * (4 + (r - g) / (max - min) );
     }
-   
+    
     if (h < 0) {h = h + 360; }
-   
+    
     l = (min + max) / 2;
-   
+    
     if (max === 0 || min === 1 ) {
-      s = 0;
+        s = 0;
     } else {
-      s = (max - l) / ( Math.min(l,1-l));
+        s = (max - l) / ( Math.min(l,1-l));
     }
     // multiply s and l by 100 to get the value in percent, rather than [0,1]
     s *= 100;
