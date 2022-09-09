@@ -1,38 +1,72 @@
 "use strict"
 
 // SETUP
-let input = document.getElementById("color_picker");
-let colorInput;
-let hexCode;
-let r, g, b, rgbCode;
-let h, s, l, hslCode;
-let cssString;
+let userInput;
+let rgbToHexValue;
+let rgbToHslValue;
+let hexToRgbValue;
+let r, g, b;
+let h, s, l;
 
 // eventlisteners
-input.addEventListener("input", storageRoom);
+document.addEventListener("DOMContentLoaded", init);
+
+function init() {
+    document.querySelector("#color_picker").addEventListener("input", getUserInput)
+}
+
+// MODEL
+function getUserInput() {
+    userInput = document.querySelector("#color_picker").value;
+
+    rgbToHexValue = rgbToHex(userInput);
+    rgbToHslValue = rgbToHsl(userInput);
+    hexToRgbValue = hexToRgb(userInput);
+
+    showColor();
+}
+
+// VIEW
+function showColor() {
+    document.querySelector(".color_display").style.backgroundColor = "rgb(" + hexToRgbValue + ")";
+    document.querySelector(".hex").textContent = "HEX: " + rgbToHexValue;
+    document.querySelector(".rgb").textContent = "RGB: " + hexToRgbValue;
+    document.querySelector(".hsl").textContent = "HSL: " + rgbToHslValue;
+
+}
 
 // CONTROLLER
 // input color into HEX code
-function makeHex() {
-    hexCode = input.value;
+function rgbToHex(r, g, b) {
+    r = userInput.substring(1, 3).toString(16);
+    g = userInput.substring(3, 5).toString(16);
+    b = userInput.substring(5, 7).toString(16);
 
-    return hexCode;
+    if (r.length <= 1) {
+        r = 0 + r;
+    };
+    if (g.length <= 1) {
+        g = 0 + g
+    };
+    if (b.length <= 1) {
+        b = 0 + b
+    };
+
+    return `#${r}${g}${b}`;
 }
 
 // input color into RGB code
-function makeRgb(color) {
-    color = input.value;
-    r = parseInt(color.substr(1, 2), 16);
-    g = parseInt(color.substr(3, 2), 16);
-    b = parseInt(color.substr(5, 2), 16);
+function hexToRgb(userInput) {
+    r = parseInt(userInput.substr(1, 2), 16);
+    g = parseInt(userInput.substr(3, 2), 16);
+    b = parseInt(userInput.substr(5, 2), 16);
 
-    rgbCode = r + ", " + g + ", " + b;
-
-    return rgbCode;
+    return {rgb};
 }
 
 //input color into HSL
-function makeHsl() {
+function rgbToHsl(r, g, b) {
+    
     r /= 255;
     g /= 255;
     b /= 255;
@@ -70,58 +104,7 @@ function makeHsl() {
     s = s.toFixed();
     l = l.toFixed();
 
-    hslCode = h + ", " + s + "%, " + l + "%";
-
-    return hslCode;
-}
-
-//input color into CSS string
-function makeString() {
-
-}
-
-
-// STORAGE
-function storageRoom(color) {
-    makeHex();
-    makeRgb();
-    makeHsl();
-    makeString();
-
-    color = {
-        "HEX code": hexCode,
-        "RGB code": rgbCode,
-        "HSL code": hslCode,
-        "CSS string": cssString
-    }
-
-    colorDisplay(color);
-}
-
-
-// DISPLAY
-function showColor() {
-    document.querySelector(".color_display").style.backgroundColor = "rgb(" + rgbCode + ")";
-}
-
-function showHex() {
-    document.querySelector(".hex").textContent = "HEX: " + hexCode;
-}
-
-function showRgb() {
-    document.querySelector(".rgb").textContent = "RGB: " + rgbCode;
-}
-
-function showHsl() {
-    document.querySelector(".hsl").textContent = "HSL: " + hslCode;
-}
-
-function colorDisplay(color) {
-    showColor();
-    showHex();
-    showRgb();
-    showHsl();
-    console.log(color);
+    return h + ", " + s + "%, " + l + "%";
 }
 
 
