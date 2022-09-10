@@ -5,6 +5,9 @@ let userInput;
 let rgbToHexValue;
 let rgbToHslValue;
 let hexToRgbValue;
+let r, g, b;
+let h, s, l;
+
 
 // eventlisteners
 document.addEventListener("DOMContentLoaded", init);
@@ -55,27 +58,23 @@ function rgbToHex(r, g, b) {
 
 // input color into RGB code
 function hexToRgb(userInput) {
-    let r, g, b;
     r = parseInt(userInput.substr(1, 2), 16);
     g = parseInt(userInput.substr(3, 2), 16);
     b = parseInt(userInput.substr(5, 2), 16);
 
-    return {rgb};
+    return r + ", " + g + ", " + b;
 }
 
 //input color into HSL
-function rgbToHsl(rgb) {
-
-    let r = rgb.r;
-    let b = rgb.b;
-    let g = rgb.g;
+function rgbToHsl(userInput) {
+    r = parseInt(userInput.substr(1, 2), 16);
+    g = parseInt(userInput.substr(3, 2), 16);
+    b = parseInt(userInput.substr(5, 2), 16);
 
     r /= 255;
     g /= 255;
     b /= 255;
-    
-    let h, s, l;
-    
+        
     const min = Math.min(r,g,b);
     const max = Math.max(r,g,b);
     
